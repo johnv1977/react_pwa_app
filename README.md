@@ -1,46 +1,122 @@
-# Getting Started with Create React App
+# DnuGame - React PWA Client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Cliente Progressive Web App (PWA) para DnuGame, desarrollado con React y TypeScript.
 
-## Available Scripts
+## 🚀 Características
 
-In the project directory, you can run:
+- ⚡ React 19 con TypeScript
+- 📱 Progressive Web App (PWA)
+- 🔒 Autenticación JWT
+- 🎮 Juego multijugador en tiempo real
+- 📡 WebSocket para comunicación en tiempo real
+- 🎨 Interfaz responsive
 
-### `npm start`
+## 🛠️ Tecnologías
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **React 19** - Framework principal
+- **TypeScript** - Tipado estático
+- **React Router** - Enrutamiento
+- **Axios** - Cliente HTTP
+- **SignalR** - WebSocket para tiempo real
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 📁 Estructura del Proyecto
 
-### `npm test`
+```
+src/
+├── components/     # Componentes reutilizables
+├── pages/         # Páginas principales
+├── services/      # Servicios de API
+├── context/       # Context API para estado global
+├── hooks/         # Custom hooks
+├── types/         # Tipos TypeScript
+├── utils/         # Utilidades
+└── config/        # Configuración de la app
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 Instalación y Uso
 
-### `npm run build`
+1. **Instalar dependencias:**
+   ```bash
+   npm install
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Configurar variables de entorno:**
+   ```bash
+   cp .env.example .env
+   # Editar .env con la configuración del backend
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **Iniciar en desarrollo:**
+   ```bash
+   npm start
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. **Construir para producción:**
+   ```bash
+   npm run build
+   ```
 
-### `npm run eject`
+## 🔧 Scripts Disponibles
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- `npm start` - Inicia el servidor de desarrollo
+- `npm run build` - Construye la aplicación para producción
+- `npm test` - Ejecuta las pruebas
+- `npm run eject` - Eyecta la configuración de Create React App
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🔗 Conexión con Backend
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+La aplicación se conecta al backend .NET ubicado en `../DnuGame.Api/`. 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Asegúrate de que el backend esté ejecutándose antes de iniciar esta aplicación.
 
-## Learn More
+## 📱 PWA
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Esta aplicación está configurada como PWA, lo que significa que:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Se puede instalar en dispositivos móviles
+- Funciona offline (funcionalidad básica)
+- Recibe notificaciones push
+- Tiene un manifiesto web configurado
+
+## 🎮 Funcionalidades del Juego
+
+- Crear y unirse a salas de juego
+- Jugar Piedra, Papel o Tijera en tiempo real
+- Chat en las salas
+- Historial de partidas
+- Sistema de puntuación
+
+## 🔒 Autenticación
+
+El sistema utiliza JWT tokens para la autenticación:
+
+- Login/Registro de usuarios
+- Persistencia de sesión
+- Protección de rutas
+- Logout automático en caso de token expirado
+
+## 🌐 API Endpoints
+
+La aplicación consume los siguientes endpoints del backend:
+
+- `POST /auth/login` - Iniciar sesión
+- `POST /auth/register` - Registrar usuario
+- `GET /auth/me` - Obtener usuario actual
+- `GET /api/rooms` - Listar salas
+- `POST /api/rooms` - Crear sala
+- `WebSocket /gamehub` - Comunicación en tiempo real
+
+## 🔄 Estado de Desarrollo
+
+Este proyecto está en desarrollo activo. Funcionalidades pendientes:
+
+- [ ] Página de login/registro
+- [ ] Lista de salas
+- [ ] Componente de juego
+- [ ] Chat en tiempo real
+- [ ] Notificaciones push
+- [ ] Modo offline
+
+## 📄 Licencia
+
+Este proyecto es parte del ecosistema DnuGame.
