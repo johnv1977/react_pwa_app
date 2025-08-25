@@ -51,17 +51,17 @@ export const useAuthStore = create<AuthState>()(
       // Getters (se actualizan automáticamente)
       get isAuthenticated() {
         const state = get();
-        return !!(state.user && state.token);
+        return !!(state?.user && state?.token);
       },
 
       get userRole() {
         const state = get();
-        return state.user?.userName || "guest";
+        return state?.user?.userName || "guest";
       },
 
       get userName() {
         const state = get();
-        return state.user?.userName || "";
+        return state?.user?.userName || "";
       },
 
       // Actions
