@@ -1,7 +1,13 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { User, AuthResponse, LoginRequest, RegisterRequest } from '../types';
-import ApiService from '../services/ApiService';
-import API_CONFIG from '../config/api';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
+import { User, AuthResponse, LoginRequest, RegisterRequest } from "../types";
+import ApiService from "../services/ApiService";
+import API_CONFIG from "../config/const/api";
 
 interface AuthContextType {
   user: User | null;
@@ -17,7 +23,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 };
@@ -33,13 +39,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     // Verificar si hay un token guardado y validar el usuario
     const checkAuth = async () => {
-      const token = localStorage.getItem('authToken');
+      const token = localStorage.getItem("authToken");
       if (token) {
         try {
-          const userData = await ApiService.get<User>(API_CONFIG.ENDPOINTS.AUTH.ME);
+          const userData = await ApiService.get<User>(
+            API_CONFIG.ENDPOINTS.AUTH.ME
+          );
           setUser(userData);
         } catch (error) {
-          localStorage.removeItem('authToken');
+          localStorage.removeItem("authToken");
         }
       }
       setIsLoading(false);
@@ -54,7 +62,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         API_CONFIG.ENDPOINTS.AUTH.LOGIN,
         credentials
       );
-      localStorage.setItem('authToken', response.token);
+      localStorage.setItem("authToken", response.token);
       setUser(response.user);
     } catch (error) {
       throw error;
@@ -67,7 +75,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         API_CONFIG.ENDPOINTS.AUTH.REGISTER,
         userData
       );
-      localStorage.setItem('authToken', response.token);
+      localStorage.setItem("authToken", response.token);
       setUser(response.user);
     } catch (error) {
       throw error;
@@ -75,7 +83,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem('authToken');
+    localStorage.removeItem("authToken");
     setUser(null);
   };
 

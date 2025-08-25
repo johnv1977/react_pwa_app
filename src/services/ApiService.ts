@@ -1,5 +1,5 @@
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
-import API_CONFIG from '../config/api';
+import axios, { AxiosInstance, AxiosResponse } from "axios";
+import API_CONFIG from "../config/const/api";
 
 class ApiService {
   private api: AxiosInstance;
@@ -8,14 +8,14 @@ class ApiService {
     this.api = axios.create({
       baseURL: API_CONFIG.BASE_URL,
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     });
 
     // Interceptor para agregar el token de autenticación
     this.api.interceptors.request.use(
       (config) => {
-        const token = localStorage.getItem('authToken');
+        const token = localStorage.getItem("authToken");
         if (token) {
           config.headers.Authorization = `Bearer ${token}`;
         }
@@ -32,8 +32,8 @@ class ApiService {
       (error) => {
         if (error.response?.status === 401) {
           // Token expirado o inválido
-          localStorage.removeItem('authToken');
-          window.location.href = '/login';
+          localStorage.removeItem("authToken");
+          window.location.href = "/login";
         }
         return Promise.reject(error);
       }
