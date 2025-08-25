@@ -35,15 +35,6 @@ export const useAuth = () => {
     verifyToken: store.verifyToken,
     clearError: store.clearError,
     checkAuth: store.checkAuth,
-
-    // Métodos de compatibilidad con el AuthContext anterior
-    login_legacy: async (credentials: LoginCredentials): Promise<void> => {
-      await store.login(credentials);
-    },
-
-    register_legacy: async (userData: AuthRegisterRequest): Promise<void> => {
-      await store.register(userData);
-    },
   };
 };
 
