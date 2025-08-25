@@ -6,7 +6,7 @@ import React, {
   ReactNode,
 } from "react";
 import { User, AuthResponse, LoginRequest, RegisterRequest } from "../types";
-import ApiService from "../services/ApiService";
+import ApiService from "../common/services/ApiService";
 import API_CONFIG from "../config/const/api";
 
 interface AuthContextType {

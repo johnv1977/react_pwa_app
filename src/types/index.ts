@@ -1,25 +1,20 @@
-// Tipos para autenticación
-export interface User {
-  id: string;
-  username: string;
-  email: string;
-}
+// Re-importar User para uso interno en este archivo
+import type { User } from "../app/auth/types/authTypes";
 
-export interface LoginRequest {
-  email: string;
-  password: string;
-}
+// Importar tipos de autenticación desde la nueva ubicación ABCC
+export type {
+  User,
+  AuthResponse,
+  LoginCredentials as LoginRequest,
+  AuthRegisterRequest as RegisterRequest,
+  ApiError,
+} from "../app/auth/types/authTypes";
 
-export interface RegisterRequest {
-  username: string;
-  email: string;
-  password: string;
-}
-
-export interface AuthResponse {
-  token: string;
-  user: User;
-}
+// También exportar con nombres actualizados para migración gradual
+export type {
+  LoginCredentials,
+  AuthRegisterRequest,
+} from "../app/auth/types/authTypes";
 
 // Tipos para salas
 export interface Room {
@@ -29,7 +24,7 @@ export interface Room {
   isPrivate: boolean;
   currentPlayers: number;
   maxPlayers: number;
-  status: 'waiting' | 'playing' | 'finished';
+  status: "waiting" | "playing" | "finished";
   createdAt: string;
 }
 
@@ -42,7 +37,7 @@ export interface CreateRoomRequest {
 // Tipos para el juego
 export interface GameMove {
   playerId: string;
-  move: 'rock' | 'paper' | 'scissors';
+  move: "rock" | "paper" | "scissors";
 }
 
 export interface GameResult {
@@ -61,7 +56,7 @@ export interface GameState {
   roomId: string;
   players: User[];
   currentRound: number;
-  gameStatus: 'waiting' | 'playing' | 'finished';
+  gameStatus: "waiting" | "playing" | "finished";
   moves: GameMove[];
   result?: GameResult;
 }
