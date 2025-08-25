@@ -1,13 +1,11 @@
 /**
- * Tipos para autenticación
- * Arquitectura ABCC - App/Auth/Types Layer
- *
- * Compatibilidad con el backend .NET API y el proyecto Vue
+ * Tipos del módulo de autenticación
+ * Basados en swagger.json
  */
 
 // Interfaces para credenciales de login
 export interface LoginCredentials {
-  email: string;
+  usernameOrEmail: string;
   password: string;
 }
 
@@ -16,18 +14,33 @@ export interface AuthRegisterRequest {
   username: string;
   email: string;
   password: string;
+  displayName?: string | null;
 }
 
 // Interface para usuario
 export interface User {
-  id: string;
-  username: string;
-  email: string;
+  id?: string | null;
+  userName?: string | null;
+  normalizedUserName?: string | null;
+  email?: string | null;
+  normalizedEmail?: string | null;
+  emailConfirmed: boolean;
+  passwordHash?: string | null;
+  securityStamp?: string | null;
+  concurrencyStamp?: string | null;
+  phoneNumber?: string | null;
+  phoneNumberConfirmed: boolean;
+  twoFactorEnabled: boolean;
+  lockoutEnd?: string | null;
+  lockoutEnabled: boolean;
+  accessFailedCount: number;
+  displayName?: string | null;
 }
 
 // Interface para respuesta de autenticación
 export interface AuthResponse {
-  token: string;
+  accessToken?: string | null;
+  expiresAt: string;
   user: User;
 }
 
@@ -38,7 +51,3 @@ export interface ApiError {
   detail?: string | null;
   status: number;
 }
-
-// Tipos para compatibilidad con el código existente (serán migrados gradualmente)
-export type LoginRequest = LoginCredentials;
-export type RegisterRequest = AuthRegisterRequest;

@@ -56,12 +56,12 @@ export const useAuthStore = create<AuthState>()(
 
       get userRole() {
         const state = get();
-        return state.user?.username || "guest";
+        return state.user?.userName || "guest";
       },
 
       get userName() {
         const state = get();
-        return state.user?.username || "";
+        return state.user?.userName || "";
       },
 
       // Actions
@@ -73,13 +73,13 @@ export const useAuthStore = create<AuthState>()(
 
           // Actualizar estado con la respuesta del servicio
           set({
-            token: response.token,
+            token: response.accessToken,
             user: response.user,
             isLoading: false,
           });
 
           // Persistir en localStorage
-          localStorage.setItem("authToken", response.token);
+          localStorage.setItem("authToken", response.accessToken ?? '');
           localStorage.setItem("user", JSON.stringify(response.user));
 
           return response;
@@ -101,13 +101,13 @@ export const useAuthStore = create<AuthState>()(
 
           // Actualizar estado con la respuesta del servicio
           set({
-            token: response.token,
+            token: response.accessToken,
             user: response.user,
             isLoading: false,
           });
 
           // Persistir en localStorage
-          localStorage.setItem("authToken", response.token);
+          localStorage.setItem("authToken", response.accessToken ?? '');
           localStorage.setItem("user", JSON.stringify(response.user));
 
           return response;
